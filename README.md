@@ -1,5 +1,5 @@
-<div style="display:flex;flex-direction: column; justify-content: center; gap:0">
-<div style="display:flex;flex-direction: row; justify-content: center; gap: 1rem;">
+<div style="display:flex;flex-direction: column; justify-content: center; gap:0; text-align: center">
+<div style="display:flex;flex-direction: row; justify-content: center; gap: 1rem; text-align: center">
   <img src="https://github.com/raycast/extensions/raw/main/images/store-logo.webp" height="128">
   <img src="https://play-lh.googleusercontent.com/Ev8OlhGrurkgyBncxVZrLasj1ldCOZP6KBpSOawB3njOXEOcTZLzvCUeBnyuzOxY8w" height="128">
 </div>
