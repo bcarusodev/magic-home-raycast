@@ -24,6 +24,18 @@
       "title": "My Devices",
       "description": "List saved devices",
       "mode": "view"
+    },
+    {
+      "name": "power-on",
+      "title": "Power on default device",
+      "description": "Power on the default device",
+      "mode": "no-view"
+    },
+    {
+      "name": "power-off",
+      "title": "Power off default device",
+      "description": "Power off the default device",
+      "mode": "no-view"
     }
   ],
   "dependencies": {
