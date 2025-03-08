@@ -1,7 +1,22 @@
-import { Icon, List } from "@raycast/api";
+import { ActionPanel, Icon, List, LocalStorage } from "@raycast/api";
 import { useEffect, useRef, useState } from "react";
 import { Discovery } from "magic-home";
 import { Device } from "../types/device";
+
+function saveToStorage(device: Device) {
+  LocalStorage.setItem(`device-${device.id}`, JSON.stringify(device));
+  return device;
+}
+
+function Actions(props: { item: Device }) {
+  return (
+    <ActionPanel title={props.item.model}>
+      <ActionPanel.Section>
+        <ActionPanel.Item title={'Add to My Devices'} onAction={() => saveToStorage(props.item)}></ActionPanel.Item>
+      </ActionPanel.Section>
+    </ActionPanel>
+  );
+}
 
 export default function Command() {
   const [devices, setDevices] = useState<Device[]>([]);
@@ -23,7 +38,7 @@ export default function Command() {
   return (
     <List isLoading={loading}>
       {devices?.map((item, index) => (
-        <List.Item key={index} title={item.id} subtitle={`Model ${item.model}`} icon={Icon.Devices}/>
+        <List.Item key={index} title={item.id} subtitle={`Model ${item.model}`} icon={Icon.Devices} actions={<Actions item={item}/>} />
       ))}
     </List>
   );

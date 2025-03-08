@@ -15,6 +15,12 @@
       "title": "Discover",
       "description": "Discover devices",
       "mode": "view"
+    },
+    {
+      "name": "devices",
+      "title": "My Devices",
+      "description": "List saved devices",
+      "mode": "view"
     }
   ],
   "dependencies": {
