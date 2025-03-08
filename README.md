@@ -1,12 +1,8 @@
-<div style="display:flex;flex-direction: column; justify-content: center; gap:0; text-align: center">
-<div style="display:flex;flex-direction: row; justify-content: center; gap: 1rem; text-align: center">
+<p align="center">
   <img src="https://github.com/raycast/extensions/raw/main/images/store-logo.webp" height="128">
   <img src="assets/extension-icon.png" height="128">
-</div>
-<h1 align="center" style="padding: 0;margin: 0">Raycast Magic Home Extension</h1>
-</div>
-
----
+</p>
+<h1 align="center">Raycast Magic Home Extension</h1>
 
 A Raycast extension to discover and control Magic Home LED compatible devices.
 

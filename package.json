@@ -5,6 +5,9 @@
   "description": "Interacts with Magic Home compatible devices",
   "icon": "extension-icon.png",
   "author": "bruno_caruso",
+  "engine": {
+    "node": ">=20.5.0"
+  },
   "categories": [
     "Productivity"
   ],
