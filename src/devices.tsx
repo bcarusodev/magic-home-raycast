@@ -1,13 +1,4 @@
-import {
-  Action,
-  ActionPanel,
-  Form,
-  Icon,
-  List,
-  LocalStorage,
-  showToast,
-  Toast
-} from "@raycast/api";
+import { Action, ActionPanel, Color, Form, Icon, List, LocalStorage, showToast, Toast } from "@raycast/api";
 
 import { useEffect, useState } from "react";
 import { Device } from "../types/device";
@@ -36,15 +27,24 @@ function Actions(props: { item: Device }) {
   return (
     <ActionPanel title={props.item.model}>
       <ActionPanel.Section>
-        <ActionPanel.Item title={"Power On"} onAction={() => handleDevicePower(deviceControl, true)}></ActionPanel.Item>
+        <ActionPanel.Item title={"Power On"}
+                          onAction={() => handleDevicePower(deviceControl, true)}
+                          icon={Icon.Power}
+        ></ActionPanel.Item>
         <ActionPanel.Item
           title={"Power Off"}
           onAction={() => handleDevicePower(deviceControl, false)}
+          icon={Icon.Power}
         ></ActionPanel.Item>
-        <Action.Push title="Set custom color" target={<ColorPicker device={deviceControl} />} />
+        <Action.Push
+          title="Set custom color"
+          target={<ColorPicker device={deviceControl}/>}
+          icon={Icon.EyeDropper}
+        />
         <ActionPanel.Item
           title={"Set as default device"}
           onAction={() => setDefaultDevice(props.item.address)}
+          icon={Icon.Heart}
         ></ActionPanel.Item>
       </ActionPanel.Section>
     </ActionPanel>
