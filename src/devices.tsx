@@ -1,8 +1,20 @@
-import { ActionPanel, Icon, List, LocalStorage, showToast, Toast } from "@raycast/api";
+import {
+  Action,
+  ActionPanel,
+  Form,
+  Icon,
+  List,
+  LocalStorage,
+  showToast,
+  Toast
+} from "@raycast/api";
+
 import { useEffect, useState } from "react";
 import { Device } from "../types/device";
 import { Control } from "magic-home";
 import Style = Toast.Style;
+import { useForm } from "@raycast/utils";
+import { getRGBValues } from "./utils";
 
 async function loadAllFromStorage() {
   const devices = await LocalStorage.allItems();
@@ -29,12 +41,59 @@ function Actions(props: { item: Device }) {
           title={"Power Off"}
           onAction={() => handleDevicePower(deviceControl, false)}
         ></ActionPanel.Item>
+        <Action.Push title="Set custom color" target={<ColorPicker device={deviceControl} />} />
         <ActionPanel.Item
           title={"Set as default device"}
           onAction={() => setDefaultDevice(props.item.address)}
         ></ActionPanel.Item>
       </ActionPanel.Section>
     </ActionPanel>
+  );
+}
+
+function ColorPicker({ device }: { device: Control }) {
+  const { handleSubmit, itemProps } = useForm<{ hexCode: string }>({
+    async onSubmit(values) {
+      const { red, green, blue } = getRGBValues(values.hexCode)
+      console.log(`Trying to set color to ${red}, ${green}, ${blue}`);
+      try {
+        await device.setColor(red, green, blue);
+      } catch (err) {
+        showToast({
+          style: Toast.Style.Failure,
+          title: "Oops!",
+          message: `Something went wrong. Please try again.`,
+        });
+      }
+      showToast({
+        style: Toast.Style.Success,
+        title: "Yay!",
+        message: `Color set to ${values.hexCode}`,
+      });
+    },
+    validation: {
+      hexCode: (value) => {
+        const hexPattern = /^#([0-9A-Fa-f]{3}){1,2}$/;
+
+        if (!value) {
+          return "HEX code is required";
+        } else if (!hexPattern.test(value)) {
+          return "Please enter a valid HEX color code";
+        }
+      },
+    },
+  });
+
+  return (
+    <Form
+      actions={
+        <ActionPanel>
+          <Action.SubmitForm title="Submit" onSubmit={handleSubmit} />
+        </ActionPanel>
+      }
+    >
+      <Form.TextField title="HEX color code" info={"Supports both 3 or 6 characters"} placeholder="#ffffff" {...itemProps.hexCode} />
+    </Form>
   );
 }
 
