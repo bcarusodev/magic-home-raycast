@@ -16,13 +16,15 @@
     {
       "name": "discover",
       "title": "Discover",
-      "description": "Discover devices",
+      "subtitle": "Discover devices",
+      "description": "Used to discover devices connected to your network",
       "mode": "view"
     },
     {
       "name": "devices",
       "title": "My Devices",
-      "description": "List saved devices",
+      "subtitle": "List saved devices",
+      "description": "Lists your saved devices that was previously discovered",
       "mode": "view"
     },
     {
