@@ -1,4 +1,4 @@
-import { Action, ActionPanel, Color, Form, Icon, List, LocalStorage, showToast, Toast } from "@raycast/api";
+import { Action, ActionPanel, Form, Icon, List, LocalStorage, showToast, Toast } from "@raycast/api";
 
 import { useEffect, useState } from "react";
 import { Device } from "../types/device";
@@ -37,7 +37,7 @@ function Actions(props: { item: Device }) {
           icon={Icon.Power}
         ></ActionPanel.Item>
         <Action.Push
-          title="Set custom color"
+          title="Set Custom Color"
           target={<ColorPicker device={deviceControl}/>}
           icon={Icon.EyeDropper}
         />
