@@ -29,13 +29,13 @@
     },
     {
       "name": "power-on",
-      "title": "Power on default device",
+      "title": "Power on Default Device",
       "description": "Power on the default device",
       "mode": "no-view"
     },
     {
       "name": "power-off",
-      "title": "Power off default device",
+      "title": "Power off Default Device",
       "description": "Power off the default device",
       "mode": "no-view"
     }

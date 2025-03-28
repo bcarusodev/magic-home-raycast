@@ -13,7 +13,11 @@ function Actions(props: { item: Device }) {
   return (
     <ActionPanel title={props.item.model}>
       <ActionPanel.Section>
-        <ActionPanel.Item title={'Add to My Devices'} onAction={() => handleDeviceSave(props.item)} icon={Icon.Plus}></ActionPanel.Item>
+        <ActionPanel.Item
+          title={"Add to My Devices"}
+          onAction={() => handleDeviceSave(props.item)}
+          icon={Icon.Plus}
+        ></ActionPanel.Item>
       </ActionPanel.Section>
     </ActionPanel>
   );
@@ -27,7 +31,8 @@ export default function Command() {
   useEffect(() => {
     if (!discoveryRef.current) {
       discoveryRef.current = new Discovery();
-      discoveryRef.current.scan(1000)
+      discoveryRef.current
+        .scan(1000)
         .then((devices) => {
           setDevices(devices);
           setLoading(false);
@@ -39,7 +44,13 @@ export default function Command() {
   return (
     <List isLoading={loading}>
       {devices?.map((item, index) => (
-        <List.Item key={index} title={item.id} subtitle={`Model ${item.model}`} icon={Icon.Devices} actions={<Actions item={item}/>} />
+        <List.Item
+          key={index}
+          title={item.id}
+          subtitle={`Model ${item.model}`}
+          icon={Icon.Devices}
+          actions={<Actions item={item} />}
+        />
       ))}
     </List>
   );

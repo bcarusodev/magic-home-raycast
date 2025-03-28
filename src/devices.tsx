@@ -9,17 +9,23 @@ import { getRGBValues } from "./utils";
 
 async function loadAllFromStorage() {
   const devices = await LocalStorage.allItems();
-  return Object.keys(devices).filter(key => !key.includes('default-device')).map((key) => JSON.parse(devices[key]));
+  return Object.keys(devices)
+    .filter((key) => !key.includes("default-device"))
+    .map((key) => JSON.parse(devices[key]));
 }
 
 async function handleDevicePower(deviceControl: Control, power: boolean) {
   await deviceControl.setPower(power);
-  await showToast({ title: `The device has been turned ${power ? 'on' : 'off'}`, style: Style.Success });
+  await showToast({ title: `The device has been turned ${power ? "on" : "off"}`, style: Style.Success });
 }
 
 async function setDefaultDevice(address: string) {
   await LocalStorage.setItem("default-device", address);
-  await showToast({ title: "Device set up as default device", message: 'Now you can control it through the direct extension commands', style: Style.Success });
+  await showToast({
+    title: "Device set up as default device",
+    message: "Now you can control it through the direct extension commands",
+    style: Style.Success,
+  });
 }
 
 function Actions(props: { item: Device }) {
@@ -27,20 +33,17 @@ function Actions(props: { item: Device }) {
   return (
     <ActionPanel title={props.item.model}>
       <ActionPanel.Section>
-        <ActionPanel.Item title={"Power On"}
-                          onAction={() => handleDevicePower(deviceControl, true)}
-                          icon={Icon.Power}
+        <ActionPanel.Item
+          title={"Power On"}
+          onAction={() => handleDevicePower(deviceControl, true)}
+          icon={Icon.Power}
         ></ActionPanel.Item>
         <ActionPanel.Item
           title={"Power Off"}
           onAction={() => handleDevicePower(deviceControl, false)}
           icon={Icon.Power}
         ></ActionPanel.Item>
-        <Action.Push
-          title="Set Custom Color"
-          target={<ColorPicker device={deviceControl}/>}
-          icon={Icon.EyeDropper}
-        />
+        <Action.Push title="Set Custom Color" target={<ColorPicker device={deviceControl} />} icon={Icon.EyeDropper} />
         <ActionPanel.Item
           title={"Set as default device"}
           onAction={() => setDefaultDevice(props.item.address)}
@@ -54,7 +57,7 @@ function Actions(props: { item: Device }) {
 function ColorPicker({ device }: { device: Control }) {
   const { handleSubmit, itemProps } = useForm<{ hexCode: string }>({
     async onSubmit(values) {
-      const { red, green, blue } = getRGBValues(values.hexCode)
+      const { red, green, blue } = getRGBValues(values.hexCode);
       console.log(`Trying to set color to ${red}, ${green}, ${blue}`);
       try {
         await device.setColor(red, green, blue);
@@ -92,7 +95,12 @@ function ColorPicker({ device }: { device: Control }) {
         </ActionPanel>
       }
     >
-      <Form.TextField title="HEX color code" info={"Supports both 3 or 6 characters"} placeholder="#ffffff" {...itemProps.hexCode} />
+      <Form.TextField
+        title="HEX color code"
+        info={"Supports both 3 or 6 characters"}
+        placeholder="#ffffff"
+        {...itemProps.hexCode}
+      />
     </Form>
   );
 }
