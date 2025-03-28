@@ -12,7 +12,7 @@ export default async function PowerHandler(power: boolean) {
       await deviceControl.setPower(power);
       await closeMainWindow();
     } catch (error) {
-      await showFailureToast(error, { title: `Failed to power ${power ? 'on' : 'off'} device` });
+      await showFailureToast(error, { title: `Failed to power ${power ? "on" : "off"} device` });
     }
   } else {
     await showToast({ title: "No default device set", style: Style.Failure });

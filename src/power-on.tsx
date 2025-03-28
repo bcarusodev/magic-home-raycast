@@ -1,5 +1,5 @@
 import PowerHandler from "./power-handler";
 
 export default async function Command() {
-  await PowerHandler(true)
+  await PowerHandler(true);
 }
