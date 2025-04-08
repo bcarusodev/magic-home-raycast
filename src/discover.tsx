@@ -13,11 +13,7 @@ function Actions(props: { item: Device }) {
   return (
     <ActionPanel title={props.item.model}>
       <ActionPanel.Section>
-        <Action
-          title={"Add to My Devices"}
-          onAction={() => handleDeviceSave(props.item)}
-          icon={Icon.Plus}
-        ></Action>
+        <Action title={"Add to My Devices"} onAction={() => handleDeviceSave(props.item)} icon={Icon.Plus}></Action>
       </ActionPanel.Section>
     </ActionPanel>
   );

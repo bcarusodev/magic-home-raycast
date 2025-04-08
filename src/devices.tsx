@@ -33,16 +33,8 @@ function Actions(props: { item: Device }) {
   return (
     <ActionPanel title={props.item.model}>
       <ActionPanel.Section>
-        <Action
-          title={"Power On"}
-          onAction={() => handleDevicePower(deviceControl, true)}
-          icon={Icon.Power}
-        ></Action>
-        <Action
-          title={"Power Off"}
-          onAction={() => handleDevicePower(deviceControl, false)}
-          icon={Icon.Power}
-        ></Action>
+        <Action title={"Power On"} onAction={() => handleDevicePower(deviceControl, true)} icon={Icon.Power}></Action>
+        <Action title={"Power Off"} onAction={() => handleDevicePower(deviceControl, false)} icon={Icon.Power}></Action>
         <Action.Push title="Set Custom Color" target={<ColorPicker device={deviceControl} />} icon={Icon.EyeDropper} />
         <Action
           title={"Set as Default Device"}
