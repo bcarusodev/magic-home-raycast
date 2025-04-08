@@ -5,7 +5,7 @@ import { Device } from "../types/device";
 import Style = Toast.Style;
 
 async function handleDeviceSave(device: Device) {
-  LocalStorage.setItem(`device-${device.id}`, JSON.stringify(device));
+  await LocalStorage.setItem(`device-${device.id}`, JSON.stringify(device));
   await showToast({ title: "Device saved", style: Style.Success });
 }
 

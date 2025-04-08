@@ -62,13 +62,13 @@ function ColorPicker({ device }: { device: Control }) {
       try {
         await device.setColor(red, green, blue);
       } catch (err) {
-        showToast({
+        await showToast({
           style: Toast.Style.Failure,
           title: "Oops!",
           message: `Something went wrong. Please try again.`,
         });
       }
-      showToast({
+      await showToast({
         style: Toast.Style.Success,
         title: "Yay!",
         message: `Color set to ${values.hexCode}`,
