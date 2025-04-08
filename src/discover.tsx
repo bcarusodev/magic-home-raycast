@@ -1,4 +1,4 @@
-import { ActionPanel, Icon, List, LocalStorage, showToast, Toast } from "@raycast/api";
+import { Action, ActionPanel, Icon, List, LocalStorage, showToast, Toast } from "@raycast/api";
 import { useEffect, useRef, useState } from "react";
 import { Discovery } from "magic-home";
 import { Device } from "../types/device";
@@ -13,11 +13,11 @@ function Actions(props: { item: Device }) {
   return (
     <ActionPanel title={props.item.model}>
       <ActionPanel.Section>
-        <ActionPanel.Item
+        <Action
           title={"Add to My Devices"}
           onAction={() => handleDeviceSave(props.item)}
           icon={Icon.Plus}
-        ></ActionPanel.Item>
+        ></Action>
       </ActionPanel.Section>
     </ActionPanel>
   );
